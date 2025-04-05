@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yoojung Kweon | Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="home-page">
+
+  <!-- Navigation Menu -->
+  <nav class="navbar">
+    <h1 class="logo"><a href="index.html">Yoojung Kweon</a></h1>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="resume.html">Resume</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <h2>Welcome to My Portfolio</h2>
+    <p>Aspiring Web Developer</p>
+    <a href="resume.pdf" download class="btn">Download Resume</a>
+  </section>
+
+  <!-- Personal Summary Section -->
+  <section id="summary">
+    <h2>About Me</h2>
+    <p>
+      Hi, I am a strategic and analytical arts professional with experience in image rights, digital systems, and cross-functional project leadership. 
+      I'm skilled in streamlining operations, interpreting data, and driving innovation in museums. 
+      I'm passionate about rethinking access, fundraising, and sustainability in the cultural sector.
+    </p>
+  </section>
+
+  <!-- I Am Dynamic Section -->
+  <section id="iam-section">
+    <h2 class="iam-header">I am <span id="iam-word" class="blank-box"></span>.</h2>
+    <p id="iam-description" class="iam-description"></p>
+
+    <div class="iam-buttons">
+      <button data-word="Resourceful" data-desc="I find creative solutions even with limited resources. I implemented an unprecedented fee structure to sustain an essential monthly project, ensuring it continued without compromising quality or mission alignment.">Resourceful</button>
+      <button data-word="Cross-functional" data-desc="I lead projects across departments that care for artworks, engage audiences, and build internal systems. I bring together collections, marketing, and development needs into cohesive workflows.">Cross-functional</button>
+      <button data-word="Detail-oriented" data-desc="I identified and corrected over 500 errors in the database, enhancing accuracy, consistency, and long-term usability for staff across departments.">Detail-oriented</button>
+      <button data-word="Impact-Driven" data-desc="I increased the institution’s acquisition of non-exclusive license agreements by about 45%, strengthening our image rights management while expanding usage possibilities. I’m now focused on making an even greater impact in nonprofit development—scaling systems, deepening engagement, and driving sustainable growth.">Impact-Driven</button>
+      <button data-word="Proactive" data-desc="I anticipate needs before they arise. I prepare ahead for myself and my team, ensuring that everyone has what they need to succeed—often before they ask.">Proactive</button>
+      <button data-word="Efficient" data-desc="I operate at a high pace without sacrificing quality or attention to detail.">Efficient</button>
+      <button data-word="Analytical" data-desc="I love numbers. I assess reports to prioritize projects and make strategic decisions based on what the data tells me—balancing instinct with insight.">Analytical</button>
+      <button data-word="Tech-savvy" data-desc="I learn new tools fast and help others use them too. I support coworkers with digital platforms and software every day. I also created this website with AI assistance.">Tech-savvy</button>
+      <button data-word="Organized" data-desc="I always deliver on time. I keep a detailed planner with short-term deadlines and long-term goals to ensure nothing is missed and everything stays on track.">Organized</button>
+      <button data-word="a Systems-Builder" data-desc="I create order from chaos. I restructured our internal artwork image and exhibition archives servers and developed visual asset systems that support both marketing and development teams.">a Systems-Builder</button>
+      <button data-word="a Relationship Cultivator" data-desc="Artists send me postcards and books as thanks. I build and maintain meaningful relationships with artists, estates, and galleries through thoughtful communication and genuine care.">a Relationship Cultivator</button>
+      <button data-word="a Diplomatic Leader" data-desc="I manage up with clarity and care—keeping supervisors informed about shifting priorities by phrasing insights as questions or suggestions that keep things collaborative.">a Diplomatic Leader</button>
+      <button data-word="a Supportive Supervisor" data-desc="I communicate regularly with team members, understanding their capacity and goals to build realistic schedules and foster a positive working environment.">a Supportive Supervisor</button>
+      <button data-word="Growth-Minded" data-desc="I invite and welcome feedback from supervisors and colleagues. I regularly check in to confirm I’m on the right path and improve processes through open dialogue.">Growth-Minded</button>
+      <button data-word="Entrepreneurial" data-desc="I take initiative and build systems where none existed. I created guidebooks, restructured internal servers, and developed new institutional processes that streamline operations and improve collaboration.">Entrepreneurial</button>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:kweon1229@gmail.com">kweon1229@gmail.com</a></p>
+    <p>GitHub: <a href="https://github.com/yourusername" target="_blank">yourusername</a></p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/yoojungkweon" target="_blank">linkedin.com/in/yoojungkweon</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Yoojung Kweon. Coded with 💻</p>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    const buttons = document.querySelectorAll('.iam-buttons button');
+    const iamWord = document.getElementById('iam-word');
+    const iamDesc = document.getElementById('iam-description');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const word = button.dataset.word;
+        const desc = button.dataset.desc;
+
+        iamWord.textContent = word;
+        iamWord.classList.add('filled');
+        iamDesc.textContent = desc;
+      });
+    });
+  </script>
+
+</body>
+</html>
