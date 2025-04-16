@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MetaJump: Recruiter Challenge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: linear-gradient(#ffe7e0, #f0c0b0);
+      font-family: 'Press Start 2P', cursive;
+      overflow: hidden;
+      color: #333;
+    }
+    canvas {
+      display: block;
+      margin: 30px auto;
+      background: #fff8dc;
+      border: 6px double #333;
+      box-shadow: 0 0 20px #f08080;
+    }
+    #info {
+      text-align: center;
+      font-size: 10px;
+      color: #444;
+      padding: 5px;
+    }
+    .popup {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      background: #ffeb3b;
+      border: 2px solid #333;
+      padding: 6px 14px;
+      font-family: 'Press Start 2P', cursive;
+      color: #000;
+      box-shadow: 2px 2px 0 #000;
+      animation: fade 3s ease forwards;
+      z-index: 1000;
+    }
+    @keyframes fade {
+      0% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas" width="800" height="300"></canvas>
+  <div id="info">
+    <p><strong>Double-tap Spacebar</strong> to double jump! Collect strengths and avoid falling!</p>
+  </div>
+
+  <!-- 🔊 Local Cute SFX -->
+  <audio id="sfx-jump" src="sounds/jump.mp3" preload="auto"></audio>
+  <audio id="sfx-coin" src="sounds/coin.mp3" preload="auto"></audio>
+  <audio id="sfx-death" src="sounds/gameover.mp3" preload="auto"></audio>
+
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    const sfxJump = document.getElementById('sfx-jump');
+    const sfxCoin = document.getElementById('sfx-coin');
+    const sfxDeath = document.getElementById('sfx-death');
+
+    let velocityY = 0;
+    let gravity = 1.2;
+    let jumpPower = -18;
+    let isJumping = false;
+    let score = 0;
+    let frame = 0;
+    let jumpCount = 0;
+    let gameOver = false;
+
+    const groundY = 260;
+
+    const player = {
+      x: 50,
+      y: 220,
+      width: 40,
+      height: 40,
+      color: '#ff69b4',
+    };
+
+    let coins = [];
+    let gaps = [];
+    let collected = [];
+    const strengths = [
+      'Metadata 💾', 'Leadership 🌟', 'Automation ⚙️', 'Analytics 📊',
+      'Assets 🎨', 'Teamwork 🧑‍🤝‍🧑', 'Languages 🗣️', 'Handling 🎁',
+      'Insight 🧠', 'Strategy 🎯'
+    ];
+
+    let coinCollectionMap = new Map();
+
+    function createCoin() {
+      const y = 180;
+      const x = canvas.width + Math.random() * 400;
+      const text = strengths[Math.floor(Math.random() * strengths.length)];
+      return { x, y, size: 20, text };
+    }
+
+    function createGap() {
+  const x = canvas.width + Math.random() * 400;
+  const width = 60; // 👈 Increased from 40 to 60
+  return { x, width };
+}
+
+    function drawGround() {
+      ctx.fillStyle = '#7cfc00';
+      ctx.fillRect(0, groundY, canvas.width, 40);
+    }
+
+    function drawGaps() {
+      gaps.forEach(gap => {
+        ctx.clearRect(gap.x, groundY, gap.width, 40);
+      });
+    }
+
+    function drawPlayer() {
+      ctx.fillStyle = player.color;
+      ctx.fillRect(player.x, player.y, player.width, player.height);
+    }
+
+    function drawCoins() {
+      coins.forEach(coin => {
+        ctx.beginPath();
+        ctx.arc(coin.x, coin.y, coin.size / 2, 0, Math.PI * 2);
+        ctx.fillStyle = '#FFD700';
+        ctx.fill();
+        ctx.font = '8px "Press Start 2P"';
+        ctx.fillStyle = '#333';
+        ctx.fillText(coin.text, coin.x - 20, coin.y - 15);
+      });
+    }
+
+    function updateCoins() {
+      coins.forEach(coin => { coin.x -= 3; });
+      coins = coins.filter(coin => coin.x + coin.size > 0);
+    }
+
+    function updateGaps() {
+      gaps.forEach(gap => { gap.x -= 3; });
+      gaps = gaps.filter(gap => gap.x + gap.width > 0);
+    }
+
+    function showPopup(text) {
+      const popup = document.createElement('div');
+      popup.className = 'popup';
+      popup.innerText = `🎉 3x ${text} collected!`;
+      document.body.appendChild(popup);
+      setTimeout(() => popup.remove(), 3000);
+    }
+
+    function collectCoins() {
+      coins.forEach((coin, index) => {
+        const dx = player.x + player.width / 2 - coin.x;
+        const dy = player.y + player.height / 2 - coin.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < player.width / 2 + coin.size / 2) {
+          collected.push(coin.text);
+          sfxCoin.currentTime = 0;
+          sfxCoin.play();
+          coins.splice(index, 1);
+          score += 100;
+
+          // Track triple collect
+          const count = coinCollectionMap.get(coin.text) || 0;
+          coinCollectionMap.set(coin.text, count + 1);
+          if (coinCollectionMap.get(coin.text) === 3) {
+            showPopup(coin.text);
+          }
+        }
+      });
+    }
+
+    function detectGapCollision() {
+  const feetY = player.y + player.height;
+  const isFalling = velocityY >= 0;
+  const nearGround = feetY >= groundY - 2;
+
+  return gaps.some(gap => {
+    // How much of the player overlaps the gap horizontally
+    const overlapX =
+      Math.min(player.x + player.width, gap.x + gap.width) -
+      Math.max(player.x, gap.x);
+
+    const overlapPercent = overlapX / player.width;
+
+    return overlapPercent >= 0.55 && isFalling && nearGround;
+  });
+}
+
+
+    function jump() {
+      if (jumpCount < 2) {
+        velocityY = jumpPower;
+        isJumping = true;
+        jumpCount++;
+        sfxJump.currentTime = 0;
+        sfxJump.play();
+      }
+    }
+
+    function updatePlayer() {
+      player.y += velocityY;
+      velocityY += gravity;
+      if (player.y >= 220) {
+        player.y = 220;
+        velocityY = 0;
+        isJumping = false;
+        jumpCount = 0;
+      }
+    }
+
+    function drawScore() {
+      ctx.fillStyle = '#000';
+      ctx.font = '12px "Press Start 2P"';
+      ctx.fillText(`Score: ${score}`, 600, 30);
+    }
+
+    function drawCollected() {
+      ctx.fillStyle = '#000';
+      ctx.font = '8px "Press Start 2P"';
+      ctx.fillText(`Strengths: ${collected.join(', ')}`, 10, 20);
+    }
+
+    function gameLoop() {
+      if (gameOver) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawGround();
+      drawGaps();
+      drawPlayer();
+      drawCoins();
+      updatePlayer();
+      updateCoins();
+      updateGaps();
+      collectCoins();
+      drawScore();
+      drawCollected();
+
+      if (detectGapCollision()) {
+        ctx.fillStyle = '#e60026';
+        ctx.font = '16px "Press Start 2P"';
+        ctx.fillText('💥 GAME OVER 💥', 240, 150);
+        ctx.font = '8px "Press Start 2P"';
+        ctx.fillText('Refresh to restart', 300, 180);
+        sfxDeath.play();
+        gameOver = true;
+        return;
+      }
+
+      if (frame % 100 === 0) coins.push(createCoin());
+      if (frame % 150 === 0) gaps.push(createGap());
+
+      frame++;
+      score++;
+      requestAnimationFrame(gameLoop);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') jump();
+    });
+
+    gameLoop();
+  </script>
+</body>
+</html>
