@@ -1,0 +1,101 @@
+body.works-page h2 {
+  border-bottom: none;
+}
+
+body.works-page .navbar {
+  border-bottom: none;
+}
+
+body.works-page footer {
+  border-top: none;
+}
+
+.page-header {
+  font-size: 0.95rem;        /* match resume */
+  line-height: 1.6;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3rem 2rem;        /* match resume padding */
+  text-align: left;
+}
+  
+  .page-header h1 {
+    font-size: 2.2rem;
+    font-weight: 400;
+  }
+
+  .page-header p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+    max-width: 640px;
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+  }  
+  
+  .section-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .section-nav a {
+    background: var(--charcoal);
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: background 0.3s ease;
+  }
+  
+  .section-nav a:hover {
+    background: var(--accent);
+  }
+  
+  .work-category {
+    max-width: 960px;
+    margin: auto;
+    padding: 2rem;
+  }
+  
+  .gallery-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+  
+  .gallery-item {
+    background: var(--white);
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+  
+  .gallery-item p {
+    font-size: 0.95rem;
+    margin-top: 0.75rem;
+  }
+  
+  .gallery-item p strong {
+    color: #1b2d48;
+    font-weight: 600;
+  }
+
+  @media screen and (max-width: 768px) {
+    .skill-group h3 {
+      font-size: 1rem;
+    }
+  
+    .skills-list li {
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      width: 100%;
+    }
+  }
+  
+  

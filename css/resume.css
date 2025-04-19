@@ -1,0 +1,35 @@
+#resume-page {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 960px;
+    margin: auto;
+    padding: 3rem 2rem;
+  }
+  
+  #resume-page ul {
+    list-style-type: disc;
+    margin-left: 2rem;
+    margin-top: 0.5rem;
+    padding-left: 0;
+  }
+  
+  #resume-page ul li,
+  #resume-page p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 0.4rem;
+  }
+  
+  .resume-block {
+    margin-bottom: 2rem;
+  }
+  
+  .resume-section {
+    margin-top: 2.5rem;
+  }
+  
+  .resume-section:first-child {
+    border-top: none;
+    margin-top: 0;
+  }
+  

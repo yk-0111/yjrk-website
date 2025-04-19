@@ -1,0 +1,101 @@
+/* === Navbar === */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--white);
+    padding: 1.5rem 3rem;
+  }
+  
+  .logo {
+    font-family: 'Montserrat'; /* or whatever you chose */
+    font-weight: 500;
+    font-size: 1.4rem;
+    letter-spacing: 0;
+  }  
+  
+  .logo a {
+    text-decoration: none;
+    color: black;
+    transition: opacity 0.3s ease;
+  }
+  
+  .logo a:hover {
+    opacity: 0.6;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: var(--black);
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+  }
+  
+  .nav-links a:hover {
+    color: var(--accent);
+  }
+  
+  /* === Footer === */
+  footer {
+    text-align: center;
+    background: var(--white);
+    color: var(--text-dark);
+    padding: 2rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  /* === Button === */
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--white);
+    padding: 0.75rem 2rem;
+    border-radius: 40px;
+    font-weight: 400;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+  }
+  
+  .btn:hover {
+    background:(--black)
+  }
+  
+  /* === Section Structure === */
+  section {
+    max-width: 900px;
+    margin: auto;
+    padding: 4rem 2rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    display: inline-block;
+  }
+  
+  section p {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--black);
+  }
+  
+  body {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  
+  body.fade-out {
+    opacity: 0;
+  }
+  

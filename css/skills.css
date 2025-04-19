@@ -1,0 +1,92 @@
+.skill-group {
+  margin-bottom: 3rem;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.skills-list li {
+  background: #ffffff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  border: 1px solid var(--charcoal);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--black);
+  transition: all 0.3s ease;
+}
+
+.skills-list li:hover {
+  background: var(--accent);
+  color: white;
+  cursor: default;
+  border: none;
+}
+
+body.skills-page h3 {
+  color: var(--blue);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+/* === Skill Description === */
+.skill-desc {
+  display: none;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  color: white; /* or var(--white) */
+  line-height: 1.4;
+  border: none;
+}
+
+/* === Show on hover === */
+.skills-list li:hover .skill-desc {
+  display: block;
+  border: none;
+}
+
+.skill-search {
+  margin: 1rem 0 2rem;
+  display: flex;
+  gap: 0.5rem;
+  max-width: 400px;
+}
+
+.skill-search input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--charcoal);
+  border-radius: 4px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+}
+
+.skill-search button {
+  padding: 0.6rem 1.2rem;
+  background: var(--charcoal);
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 4px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.skill-search button:hover {
+  background: var(--accent);
+}
+
+.skill-item.highlight {
+  background-color: #fffbcc;
+  border: 2px solid var(--charcoal);
+  transition: background 0.3s ease;
+}
