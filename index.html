@@ -6,17 +6,23 @@
   <meta name="robots" content="noindex, nofollow">
   <title>Yoojung Kweon | Portfolio</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts: Montserrat -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Logo Font: Playfair Display (example) -->
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/home.css">
 </head>
-<body class="home-page">
+<body class="home-page"> 
 
   <!-- Navigation Menu -->
   <nav class="navbar">
     <h1 class="logo"><a href="index.html">Yoojung Kweon</a></h1>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
+      <li><a href="bio.html">Bio</a></li>
       <li><a href="skills.html">Skills</a></li>
       <li><a href="resume.html">Resume</a></li>
       <li><a href="works.html">Works</a></li>
@@ -26,26 +32,26 @@
   </nav>
 
   <!-- Hero Section -->
-  <section id="home" class="hero">
-    <h2>Welcome to My Portfolio</h2>
-    <div class="btn-wrapper">
-      <a href="resume.pdf" download class="btn">Download Resume</a>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Hello, I'm <span>Roxy</span></h1>
+    </div>
+    <br>
+    <div class="hero-summary">
+        <p>
+          I am a strategic and analytical arts professional with experience in image rights, digital systems, and cross-functional project leadership. 
+          I'm skilled in streamlining operations, interpreting data, and driving innovation in museums. 
+          I'm passionate about rethinking access, fundraising, and sustainability in the cultural sector.
+        </p>
+        <div class="btn-wrapper">
+          <a href="bio.html" class="btn">Read more about me</a>
+    </div>
     </div>
   </section>
 
-  <!-- Personal Summary Section -->
-  <section id="summary">
-    <h2>About Me</h2>
-    <p>
-      Hi, I am a strategic and analytical arts professional with experience in image rights, digital systems, and cross-functional project leadership. 
-      I'm skilled in streamlining operations, interpreting data, and driving innovation in museums. 
-      I'm passionate about rethinking access, fundraising, and sustainability in the cultural sector.
-    </p>
-  </section>
-
   <!-- I Am Dynamic Section -->
-  <section id="iam-section">
-    <h2 class="iam-header">I am <span id="iam-word" class="blank-box"></span>.</h2>
+  <section id="iam-section" class="reveal">
+    <h2 class="iam-header">I am <span id="iam-word" class="blank-box"></span>   .</h2>
     <p id="iam-description" class="iam-description"></p>
 
     <div class="iam-buttons">
@@ -68,8 +74,8 @@
   </section>
 
   <!-- Footer -->
-  <footer>
-    <p>© 2025 Yoojung Kweon. Coded with 💻</p>
+  <footer class="reveal">
+    <p>© 2025 Yoojung Kweon. Designed and coded with 💻</p>
   </footer>
 
   <!-- Script -->
@@ -89,6 +95,37 @@
       });
     });
   </script>
+
+<script>
+  // === Scroll reveal ===
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // Trigger once
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // === Page transitions ===
+  document.querySelectorAll('a[href]').forEach(link => {
+    if (link.hostname === window.location.hostname) {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (!href.startsWith('#') && !this.hasAttribute('target')) {
+          e.preventDefault();
+          document.body.classList.add('fade-out');
+          setTimeout(() => window.location.href = href, 300);
+        }
+      });
+    }
+  });
+</script>
+
 
 </body>
 </html>
