@@ -4,8 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Skills | Yoojung Kweon</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/skills.css">
+<!-- Google Fonts: Montserrat -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Logo Font: Playfair Display (example) -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -18,6 +23,7 @@
       
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
+      <li><a href="bio.html">Bio</a></li>
       <li><a href="skills.html">Skills</a></li>
       <li><a href="resume.html">Resume</a></li>
       <li><a href="works.html">Works</a></li>
@@ -30,62 +36,168 @@
   <section id="skills-page">
     <h2>Skills</h2>
 
+    <div class="skill-search">
+      <input type="text" id="searchInput" placeholder="Search skills..." />
+      <button onclick="searchSkills()">Search</button>
+    </div>
+    
     <div class="skill-group">
-      <h3>Design & Creative</h3>
+      <h3>Museum & Exhibition Skills</h3>
       <ul class="skills-list">
-        <li>Adobe InDesign</li>
-        <li>Illustrator</li>
-        <li>Photoshop</li>
-        <li>Premiere Pro</li>
-        <li>After Effects</li>
-        <li>Lightroom</li>
-        <li>Bridge</li>
+        <li>Blender
+          <p class="skill-desc">open source...</p>
+        </li>
+        <li class="skill-item" onClick="toggleDescription(this)">
+          Art Handling & Installation
+          <p class="skill-desc">Safely transport, mount, and display 2D, 3D, and digital works</p>
+        </li>
+        <li class="skill-item" onClick="toggleDescription(this)">
+          Gallery Preparation
+          <p class="skill-desc">Wall painting, patching, and exhibition-ready finishing</p>
+        </li>
+        <li class="skill-item" onClick="toggleDescription(this)">
+          Condition Reporting
+          <p class="skill-desc">Assess and document artworks pre/post transit or display</p>
+        </li>
+        <li class="skill-item" onClick="toggleDescription(this)">
+          Collections Management
+          <p class="skill-desc">Inventory, catalog, and label collection objects</p>
+        </li>
       </ul>
     </div>
 
     <div class="skill-group">
-      <h3>3D & Visualization</h3>
+      <h3>Photography & Digital Imaging Skills</h3>
       <ul class="skills-list">
-        <li>SketchUp</li>
-        <li>Blender</li>
+        <li class="skill-item" onclick="toggleDescription(this)">
+          Fine Art Photography
+          <p class="skill-desc">Archival-quality documentation using DSLR and controlled lighting</p>
+        </li>
+        <li class="skill-item" onclick="toggleDescription(this)">
+          Adobe Lightroom Classic
+          <p class="skill-desc">Non-destructive editing, batch processing, and color correction</p>
+        </li>
+        <li class="skill-item" onclick="toggleDescription(this)">
+          Adobe Bridge
+          <p class="skill-desc">File management, metadata tagging, and asset organization</p>
+        </li>
+        <li class="skill-item" onclick="toggleDescription(this)">
+          Adobe Photoshop
+          <p class="skill-desc">Image editing and retouching for publication and web</p>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="skill-group">
+      <h3>Creative & Technical Tools</h3>
+      <ul class="skills-list">
+        <li class="skill-item" onclick="toggleDescription(this)">
+          Adobe Creative Cloud
+          <p class="skill-desc">Photoshop, Illustrator, InDesign, AfterEffects, Premiere Pro</p>
+        </li>
+        <li class="skill-item" onclick="toggleDescription(this)">
+          Mac OS Automator & Shortcuts
+          <p class="skill-desc">Workflow automation for repetitive tasks and batch processing using Quick Action, AppleScript, and ExifTool</p>
+        </li>
+        <li class="skill-item" onclick="toggleDescription(this)">
+          Digital Asset Management
+          <p class="skill-desc">Clean, efficient systems for media, documentation, and records on both local and cloud servers</p>
+        </li>
       </ul>
     </div>
 
     <div class="skill-group">
-      <h3>Web & Analytics</h3>
+      <h3>Marketing & Outreach</h3>
       <ul class="skills-list">
-        <li>WordPress</li>
-        <li>Google Analytics</li>
-        <li>Mailchimp</li>
+        <li class="skill-item" onclick="toggleDescription(this)">
+          Promotional Design
+          <p class="skill-desc">Exhibition collateral, signage, and wayfinding maps tailored to visitor experience</p>
+        </li>
+        <li class="skill-item" onclick="toggleDescription(this)">
+          Content Adaptation
+          <p class="skill-desc">Translate research-heavy curatorial material into engaging, accessible language for public audiences</p>
+        </li>
+        <li class="skill-item" onclick="toggleDescription(this)">
+          Social Media
+          <p class="skill-desc">Promote exhibitions and events with posts and visual contents across platforms</p>
+        </li>
       </ul>
     </div>
 
     <div class="skill-group">
-      <h3>Tools & Platforms</h3>
+      <h3>Strategic & Professional Skills</h3>
       <ul class="skills-list">
-        <li>Google Workspace</li>
-        <li>Microsoft Word</li>
-        <li>Excel</li>
-        <li>PowerPoint</li>
-        <li>MuseumPlus</li>
-        <li>Asana</li>
-        <li>Salesforce</li>
-      </ul>
-    </div>
-
-    <div class="skill-group">
-      <h3>Languages</h3>
-      <ul class="skills-list">
-        <li>English</li>
-        <li>Korean</li>
-        <li>French (Intermediate)</li>
+        <li class="skill-item" onclick="toggleDescription(this)">
+          Project Management
+          <p class="skill-desc">Coordinate timelines and cross-departmental workflows</p>
+        </li>
+        <li class="skill-item" onclick="toggleDescription(this)">
+          Research & Innovation
+          <p class="skill-desc">Full revamp of a 20-year-old institutional contract to modernize and streamline processes</p>
+        </li>
+        <li class="skill-item" onclick="toggleDescription(this)">
+          Creative Problem Solving
+          <p class="skill-desc">Tackle legacy systems with fresh, adaptable solutions</p>
+        </li>
+        <li class="skill-item" onclick="toggleDescription(this)">
+          Strong Communication
+          <p class="skill-desc">Liaise across teams</p>
+        </li>
+        <li class="skill-item" onclick="toggleDescription(this)">
+          Leadership & Collaboration
+          <p class="skill-desc">Team-building and facilitation in fast-paced, detail-heavy environments</p>
+        </li>
       </ul>
     </div>
   </section>
 
+  <script>
+    function toggleDescription(clickedItem) {
+      // Collapse others
+      document.querySelectorAll('.skill-item').forEach(item => {
+        if (item !== clickedItem) item.classList.remove('active');
+      });
+      
+      // Toggle current
+      clickedItem.classList.toggle('active');
+    }
+  </script>
+  
   <footer>
-    <p>© 2025 Yoojung Kweon. Designed & Coded with 💻</p>
+    <p>© 2025 Yoojung Kweon. Designed and coded with 💻</p>
   </footer>
 
+  <script>
+    function searchSkills() {
+      const keyword = document.getElementById('searchInput').value.toLowerCase().trim();
+      const skillItems = document.querySelectorAll('.skill-item');
+  
+      // Remove previous highlights
+      skillItems.forEach(item => item.classList.remove('highlight'));
+  
+      if (!keyword) return;
+  
+      let firstMatch = null;
+  
+      skillItems.forEach(item => {
+        const labelText = item.childNodes[0]?.textContent.toLowerCase() || "";
+        const descText = item.querySelector('.skill-desc')?.textContent.toLowerCase() || "";
+  
+        const match = labelText.includes(keyword) || descText.includes(keyword);
+  
+        if (match) {
+          item.classList.add('highlight');
+          if (!firstMatch) firstMatch = item;
+        }
+      });
+  
+      // Scroll to first match
+      if (firstMatch) {
+        firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  </script>
+  
+  
 </body>
 </html>
