@@ -86,16 +86,5 @@ body.works-page footer {
     font-weight: 600;
   }
 
-  @media screen and (max-width: 768px) {
-    .skill-group h3 {
-      font-size: 1rem;
-    }
-  
-    .skills-list li {
-      font-size: 0.9rem;
-      padding: 0.5rem 1rem;
-      width: 100%;
-    }
-  }
   
   
